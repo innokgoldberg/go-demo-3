@@ -14,10 +14,10 @@ rbac:
 resources:
   limits:
    cpu: 0.2
-   memory: 20Mi
+   memory: 50Mi
   requests:
    cpu: 0.1
-   memory: 10Mi
+   memory: 25Mi
 dbResources:
   limits:
     memory: "200Mi"
