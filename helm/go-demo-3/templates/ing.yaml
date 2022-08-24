@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $serviceName := include "helm.fullname" . -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "helm.fullname" . }}
@@ -16,8 +16,12 @@ spec:
   rules:
   - http:
       paths:
-      - backend:
-          serviceName: {{ $serviceName }}
-          servicePort: 8080
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: {{ $serviceName }}
+            port:
+              number: 8080
     host: {{ .Values.ingress.host }}
 {{- end -}}
+
